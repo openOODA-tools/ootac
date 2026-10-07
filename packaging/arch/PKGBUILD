@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootac-bin
+_pkgname=ootac
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Reverses files line by line using fast backwards seek and ring buffer scanning."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootac"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootac')
+conflicts=('ootac')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootac-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootac-linux-x86_64" "${pkgdir}/usr/bin/ootac"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootac-uninstall"
+}
